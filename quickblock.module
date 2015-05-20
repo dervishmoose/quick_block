@@ -1,0 +1,46 @@
+<?php
+
+/**
+* Implements hook_block_info().
+*/
+function quickblock_block_info() {
+  $blocks = array();
+  $blocks['quickblock_block'] = array(
+  'info' => t('Quick Block Template'),
+  );
+
+  return $blocks;
+}
+
+//  <script type="text/javascript" src="js/script.js"></script>
+// <link rel="stylesheet" type="text/css" href="css/site.css">
+
+
+/**
+* Implements hook_block_view().
+*/
+function quickblock_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'quickblock_block':
+    $block['subject'] = '';
+    $block['content'] = _quickblock_content();
+    break;
+  }
+
+  return $block;
+}
+
+function _quickblock_content() {
+  drupal_add_js(drupal_get_path('module', 'quickblock') .'/js/quickblock.js');
+  drupal_add_css(drupal_get_path('module', 'quickblock') .'/css/quickblock.css');
+
+  $template = file_get_contents(drupal_get_path('module', 'quickblock') .'/template/quickblock_template.php', true);
+
+  $output = $template;
+
+  return $output;
+}
+
+?>

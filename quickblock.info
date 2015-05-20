@@ -1,0 +1,3 @@
+name = Quick Block Template
+description = Provides a basic framework and html template for a Drupal 7 block
+core = 7.x
